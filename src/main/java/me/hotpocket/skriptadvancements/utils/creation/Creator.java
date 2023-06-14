@@ -39,19 +39,13 @@ public class Creator {
                 }
             }
         }
-        if (root.getKey().getKey().equals("temp_root_advancement_name_1289587") || baseAdvancements.size() < 1) {
-            BaseAdvancement tempBase = new BaseAdvancement("name1", new AdvancementDisplay(Material.DIAMOND, "title", AdvancementFrameType.TASK, false, false, 0, 0, "description"), root);
-            CustomUtils.getAPI().getAdvancementTab(lastCreatedTab).registerAdvancements(root, tempBase);
-            CustomUtils.getAPI().unregisterAdvancementTab(lastCreatedTab);
-            Skript.error("You need at least one root advancement and a base advancement with a parent to register an advancement tab.");
-        } else {
             CustomUtils.getAPI().getAdvancementTab(lastCreatedTab).registerAdvancements(root, baseAdvancements);
             for (AdvancementTab tab : CustomUtils.getAPI().getTabs()) {
                 for (Player player : Bukkit.getOnlinePlayers()) {
                     tab.updateAdvancementsToTeam(player);
                 }
             }
-        }
+        //}
         advancements.remove(lastCreatedTab);
     }
 }
