@@ -6,10 +6,10 @@
 
     <groupId>me.hotpocket</groupId>
     <artifactId>skriptadvancements</artifactId>
-    <version>1.5.6</version>
+    <version>1.5.7</version>
     <packaging>jar</packaging>
 
-    <name>Skript-Advancements</name>
+    <name>skript-advancements</name>
 
     <description>Allows you to manipulate advancements in Skript.</description>
     <properties>
