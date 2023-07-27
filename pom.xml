@@ -6,7 +6,7 @@
 
     <groupId>me.hotpocket</groupId>
     <artifactId>skriptadvancements</artifactId>
-    <version>1.5.7</version>
+    <version>1.5.8</version>
     <packaging>jar</packaging>
 
     <name>skript-advancements</name>
