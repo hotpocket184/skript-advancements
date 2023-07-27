@@ -47,19 +47,24 @@ public class ExprAdvancementDisplay extends SimplePropertyExpression<Advancement
     private Object getValue(Advancement advancement) {
         switch (pattern) {
             case 0 -> {
-                return LegacyComponentSerializer.legacyAmpersand().serialize(advancement.getDisplay().title());
+                if (advancement.getDisplay().title() != null)
+                    return LegacyComponentSerializer.legacyAmpersand().serialize(advancement.getDisplay().title());
             }
             case 1 -> {
-                return LegacyComponentSerializer.legacyAmpersand().serialize(advancement.getDisplay().description());
+                if (advancement.getDisplay().description() != null)
+                    return LegacyComponentSerializer.legacyAmpersand().serialize(advancement.getDisplay().description());
             }
             case 2 -> {
-                return LegacyComponentSerializer.legacyAmpersand().serialize(advancement.getDisplay().displayName());
+                if (advancement.getDisplay().displayName() != null)
+                    return LegacyComponentSerializer.legacyAmpersand().serialize(advancement.getDisplay().displayName());
             }
             case 3 -> {
-                return new ItemType(advancement.getDisplay().icon());
+                if (advancement.getDisplay().icon() != null)
+                    return new ItemType(advancement.getDisplay().icon());
             }
             case 4 -> {
-                return advancement.getDisplay().frame();
+                if (advancement.getDisplay().frame() != null)
+                    return advancement.getDisplay().frame();
             }
             case 5 -> {
                 return advancement.getDisplay().doesShowToast();
@@ -74,6 +79,7 @@ public class ExprAdvancementDisplay extends SimplePropertyExpression<Advancement
                 return null;
             }
         }
+        return null;
     }
 
     @Override
