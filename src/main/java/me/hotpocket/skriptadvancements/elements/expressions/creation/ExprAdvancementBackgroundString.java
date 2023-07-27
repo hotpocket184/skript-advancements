@@ -26,8 +26,8 @@ public class ExprAdvancementBackgroundString extends SimpleExpression<String> {
 
     static {
         Skript.registerExpression(ExprAdvancementBackgroundString.class, String.class, ExpressionType.SIMPLE,
-                "[the] background [texture] [of [the] [last (created|made)] [custom] advancement]",
-                "[the] [[last (created|made)] [custom] advancement[']s] background [texture]");
+                "[the] background texture [of [the] [last (created|made)] [custom] advancement]",
+                "[the] [[last (created|made)] [custom] advancement[']s] background texture");
     }
 
     @Override
@@ -58,7 +58,7 @@ public class ExprAdvancementBackgroundString extends SimpleExpression<String> {
     @Override
     public @Nullable Class<?>[] acceptChange(Changer.ChangeMode mode) {
         return switch (mode) {
-            case SET -> CollectionUtils.array(ItemType.class);
+            case SET -> CollectionUtils.array(String.class);
             default -> null;
         };
     }
