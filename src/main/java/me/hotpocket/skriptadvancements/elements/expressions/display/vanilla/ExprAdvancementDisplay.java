@@ -19,7 +19,7 @@ import org.jetbrains.annotations.Nullable;
 @Name("Vanilla Advancement Display")
 @Description("Returns the specified display of advancements")
 @Examples("broadcast frame of advancement \"adventure/root\"")
-@Since("1.4")
+@Since("1.5.8")
 
 public class ExprAdvancementDisplay extends SimplePropertyExpression<Advancement, Object> {
 

@@ -33,6 +33,7 @@ public class TempAdvancement {
     private static int maxProgression;
     private static boolean root;
     private static Material background;
+    public static String backgroundString = "";
     private static VisibilityType visibility;
 
 
@@ -79,6 +80,10 @@ public class TempAdvancement {
         return background;
     }
 
+    public String getBackgroundString() {
+        return backgroundString;
+    }
+
     public void setIcon(ItemStack icon) {
         display = new AdvancementDisplay(icon, display.getTitle(), display.getFrame(), display.doesShowToast(), display.doesAnnounceToChat(), display.getX(), display.getY(), display.getDescription());
     }
@@ -115,12 +120,16 @@ public class TempAdvancement {
         maxProgression = progression;
     }
 
-    public void setRoot(boolean root) {
-        TempAdvancement.root = root;
+    public void setRoot(boolean isRoot) {
+        root = isRoot;
     }
 
-    public void setBackground(Material background) {
-        TempAdvancement.background = background;
+    public void setBackground(Material backgroundMaterial) {
+        background = backgroundMaterial;
+    }
+
+    public void setBackgroundString(String stringBackground) {
+        backgroundString = stringBackground;
     }
 
     public VisibilityType getVisibility() {
@@ -184,9 +193,15 @@ public class TempAdvancement {
             }
             if (root) {
                 if (maxProgression > 0) {
-                    advancement = new RootAdvancement(CustomUtils.getAPI().getAdvancementTab(tab), name, display, getTexture(background), maxProgression);
+                    if (getBackgroundString().equals(""))
+                        advancement = new RootAdvancement(CustomUtils.getAPI().getAdvancementTab(tab), name, display, getTexture(background), maxProgression);
+                    else
+                        advancement = new RootAdvancement(CustomUtils.getAPI().getAdvancementTab(tab), name, display, getBackgroundString(), maxProgression);
                 } else {
-                    advancement = new RootAdvancement(CustomUtils.getAPI().getAdvancementTab(tab), name, display, getTexture(background));
+                    if (getBackgroundString().equals(""))
+                        advancement = new RootAdvancement(CustomUtils.getAPI().getAdvancementTab(tab), name, display, getTexture(background));
+                    else
+                        advancement = new RootAdvancement(CustomUtils.getAPI().getAdvancementTab(tab), name, display, getBackgroundString());
                 }
             } else {
                 if (parents.size() > 1) {
