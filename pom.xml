@@ -6,10 +6,10 @@
 
     <groupId>me.hotpocket</groupId>
     <artifactId>skriptadvancements</artifactId>
-    <version>1.5.8</version>
+    <version>1.5.6</version>
     <packaging>jar</packaging>
 
-    <name>skript-advancements</name>
+    <name>Skript-Advancements</name>
 
     <description>Allows you to manipulate advancements in Skript.</description>
     <properties>
@@ -127,7 +127,7 @@
         <dependency>
             <groupId>com.frengor</groupId>
             <artifactId>ultimateadvancementapi-shadeable</artifactId>
-            <version>2.2.6</version>
+            <version>2.2.4</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
