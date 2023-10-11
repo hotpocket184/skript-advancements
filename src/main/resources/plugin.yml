@@ -1,4 +1,4 @@
-name: Skript-Advancements
+name: skript-advancements
 version: '${project.version}'
 main: me.hotpocket.skriptadvancements.SkriptAdvancements
 api-version: 1.16
