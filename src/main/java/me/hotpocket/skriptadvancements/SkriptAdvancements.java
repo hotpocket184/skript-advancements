@@ -6,6 +6,8 @@ import com.fren_gor.ultimateAdvancementAPI.AdvancementMain;
 import com.fren_gor.ultimateAdvancementAPI.AdvancementTab;
 import com.fren_gor.ultimateAdvancementAPI.UltimateAdvancementAPI;
 import com.fren_gor.ultimateAdvancementAPI.events.PlayerLoadingCompletedEvent;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import me.hotpocket.skriptadvancements.bstats.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -16,7 +18,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
+import java.net.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -94,13 +96,26 @@ public final class SkriptAdvancements extends JavaPlugin implements Listener {
     }
 
     private String getVersion() {
-        try (InputStream inputStream = new URL("https://api.spigotmc.org/legacy/update.php?resource=96702").openStream(); Scanner scanner = new Scanner(inputStream)) {
-            if (scanner.hasNext()) {
-                return scanner.next();
+        try {
+            URL url = new URI("https://api.github.com/repos/hotpocket184/skript-advancements/releases/latest").toURL();
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            con.setConnectTimeout(3000); // ms
+
+            if (con.getResponseCode() != HttpURLConnection.HTTP_OK) {
+                this.getLogger().info("Got code " + con.getResponseCode() + " while checking for updates.");
+                return "";
             }
-        } catch (IOException exception) {
+
+            String response = new String(con.getInputStream().readAllBytes());
+            Gson gson = new Gson();
+            JsonObject json = gson.fromJson(response, JsonObject.class);
+            if (json.has("tag_name")) return json.get("tag_name").getAsString();
+
+        } catch (URISyntaxException | IOException exception) {
             this.getLogger().info("Unable to check for updates: " + exception.getMessage());
         }
+
         return "";
     }
 
